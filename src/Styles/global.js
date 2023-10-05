@@ -11,7 +11,7 @@ export default createGlobalStyle`
     :root {
         font-family: 'Roboto Slab', serif;
         -webkit-font-smoothing: antialiased;
-        background-color: ${({ theme }) => theme.COLORS.BACKGROUND_800};
+        background-color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
         color: ${({ theme }) => theme.COLORS.WHITE}
     };
 
@@ -28,7 +28,7 @@ export default createGlobalStyle`
     }
 
     a:hover, button:hover, li:hover {
-        filter: brightness(0.9);
+        filter: brightness(0.7);
     }
 
 `;
