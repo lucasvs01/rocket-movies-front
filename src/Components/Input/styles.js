@@ -5,6 +5,8 @@ export const Container = styled.div`
     width: 100%;
     height: 56px;
 
+    
+
     border: none;
     border-radius: 10px;
     background-color: ${({ theme }) => theme.COLORS.BACKGROUND_800};
@@ -23,7 +25,6 @@ export const Container = styled.div`
 
         border: none;
         border-radius: 10px;
-        outline: none;
 
     }
 

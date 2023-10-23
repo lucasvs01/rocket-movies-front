@@ -2,14 +2,14 @@ import styled from "styled-components";
 
 export const Container = styled.div`
 
+    grid-area: header;
+    
     width: 100%;
     height: 120px;
     gap: 64px;
     display: flex;
     padding: 25px 123px;
    
-
-    grid-area: header;
     
     border-bottom: 1px solid ${({theme}) => theme.COLORS.BACKGROUND_600};
 
@@ -44,6 +44,9 @@ export const Container = styled.div`
 
         display: flex;
         justify-content: end;
+        
+        
+
 
         white-space: nowrap;
         }

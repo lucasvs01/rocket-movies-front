@@ -4,10 +4,10 @@ import {AiOutlineSearch} from "react-icons/ai";
 
 
 
-export function Header(){
+export function Header({children, ...rest}){
 
     return(
-        <Container>
+        <Container{...rest}>
            <h1>RocketMovies</h1>
 
            <Input placeholder="Pesquise pelo título" icon={AiOutlineSearch}/>
@@ -18,8 +18,9 @@ export function Header(){
                         Lucas Santos
                     </strong>
                     
+
                     <span>
-                        sair
+                        {children}
                     </span>
                 </div>
 
