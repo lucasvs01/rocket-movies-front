@@ -64,10 +64,10 @@ export const Container = styled.div`
             margin-top: 40px;
 
             a:nth-child(1){
-                background-color: ${({ theme }) => theme.COLORS.BLACK};
+                background-color: ${({ theme }) => theme.COLORS.PINK};
                 justify-content: center;
                p {
-                    color: ${({ theme }) => theme.COLORS.PINK};
+                    color: ${({ theme }) => theme.COLORS.BLACK};
                     
 
                } 

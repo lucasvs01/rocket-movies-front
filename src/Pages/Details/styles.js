@@ -6,13 +6,15 @@ export const Container = styled.div`
     width: 100%;
     height: 100vh;
 
+    
+
     grid-template-rows: 120px auto;
     grid-template-areas: "header" "main";
 
     > main {
         grid-area: "main";
 
-        margin: 40px 106px 85px 123px;
+        margin: 40px 106px 0px 123px;
 
         overflow-y: auto;
 
@@ -60,7 +62,7 @@ export const Container = styled.div`
              }
         }
 
-
+       
         .tags {
             display: flex;
             gap: 8px;
@@ -75,7 +77,21 @@ export const Container = styled.div`
             margin-top: 40px;
         }
 
+
+
     }
+
+    >footer {
+
+        margin: 40px 106px 0px 123px;
+        text-align: center;
+        height: 56px;
+
+        padding: 0 24px 8px 0;
+        
+        justify-content: center;
+        
+}
 `;
 
 

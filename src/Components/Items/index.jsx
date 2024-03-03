@@ -11,16 +11,81 @@ export function Items({data, ...rest}){
                 {data.title}
             </h2>
 
-            <div className="stars">
-                <AiTwotoneStar ></AiTwotoneStar>
-                <AiTwotoneStar ></AiTwotoneStar>
-                <AiTwotoneStar ></AiTwotoneStar>
-                <AiTwotoneStar ></AiTwotoneStar>
-                <AiTwotoneStar className="transparent-star"></AiTwotoneStar>
-            </div>
+            {(    data.rating === 0 ? 
+                    <div className="stars">
+                                         
+                        <AiTwotoneStar className="transparent-star"></AiTwotoneStar>
+                        <AiTwotoneStar className="transparent-star"></AiTwotoneStar>
+                        <AiTwotoneStar className="transparent-star"></AiTwotoneStar>
+                        <AiTwotoneStar className="transparent-star"></AiTwotoneStar>
+                        <AiTwotoneStar className="transparent-star"></AiTwotoneStar>
+        
+                    </div> : 
+                    null)}
+
+            {(    data.rating === 1 ? 
+                
+                        <div className="stars">
+                                            
+                            <AiTwotoneStar ></AiTwotoneStar>
+                            <AiTwotoneStar className="transparent-star"></AiTwotoneStar>
+                            <AiTwotoneStar className="transparent-star"></AiTwotoneStar>
+                            <AiTwotoneStar className="transparent-star"></AiTwotoneStar>
+                            <AiTwotoneStar className="transparent-star"></AiTwotoneStar>
+
+                        </div> : 
+                    null)}
+
+            {(    data.rating === 2 ? 
+                    <div className="stars">
+                                         
+                        <AiTwotoneStar ></AiTwotoneStar>
+                        <AiTwotoneStar ></AiTwotoneStar>
+                        <AiTwotoneStar className="transparent-star"></AiTwotoneStar>
+                        <AiTwotoneStar className="transparent-star"></AiTwotoneStar>
+                        <AiTwotoneStar className="transparent-star"></AiTwotoneStar>
+        
+                    </div> : 
+                    null)}  
+
+            {(    data.rating === 3 ? 
+                    <div className="stars">
+                                         
+                        <AiTwotoneStar ></AiTwotoneStar>
+                        <AiTwotoneStar ></AiTwotoneStar>
+                        <AiTwotoneStar ></AiTwotoneStar>
+                        <AiTwotoneStar className="transparent-star"></AiTwotoneStar>
+                        <AiTwotoneStar className="transparent-star"></AiTwotoneStar>
+        
+                    </div> : 
+                    null)} 
+
+            {(    data.rating === 4 ? 
+                    <div className="stars">
+                                         
+                        <AiTwotoneStar ></AiTwotoneStar>
+                        <AiTwotoneStar ></AiTwotoneStar>
+                        <AiTwotoneStar ></AiTwotoneStar>
+                        <AiTwotoneStar ></AiTwotoneStar>
+                        <AiTwotoneStar className="transparent-star"></AiTwotoneStar>
+        
+                    </div> : 
+                    null)} 
+
+            {(    data.rating === 5 ? 
+                    <div className="stars">
+                                         
+                        <AiTwotoneStar ></AiTwotoneStar>
+                        <AiTwotoneStar ></AiTwotoneStar>
+                        <AiTwotoneStar ></AiTwotoneStar>
+                        <AiTwotoneStar ></AiTwotoneStar>
+                        <AiTwotoneStar ></AiTwotoneStar>
+        
+                    </div> : 
+                    null)}
 
             <p>
-                {data.children}
+                {data.description}
             </p>
             
 

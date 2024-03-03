@@ -8,11 +8,22 @@ import { Buttontext } from "../../Components/Buttontext"
 import {AiOutlineMail} from "react-icons/ai"
 import {AiOutlineLock} from "react-icons/ai"
 
-import { Link } from "react-router-dom"
+import { useAuth } from "../../hooks/auth";
+import { useState } from "react";
+
 
 
 export function SignIn(){
-
+    
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    
+    const {signIn} = useAuth();
+    
+    function handleSignIn(){
+        signIn({email, password})
+    }
+    
     return (
         <Container>
             <div className="content"> 
@@ -25,11 +36,11 @@ export function SignIn(){
                     <h2>Faça seu login</h2>
 
                     <div className="inputs">
-                        <Input placeholder="E-mail" type="email" icon={AiOutlineMail}/>
-                        <Input placeholder="Senha" type="password" icon={AiOutlineLock}/>
+                        <Input placeholder="E-mail" type="email" icon={AiOutlineMail} onChange={ e => setEmail(e.target.value)}/>
+                        <Input placeholder="Senha" type="password" icon={AiOutlineLock} onChange={ e => setPassword(e.target.value)}/>
                     </div>
 
-                    <Button title="Entrar"/>
+                    <Button title="Entrar" onClick={handleSignIn}/>
 
                     <Buttontext to="/register" title="Criar conta"/>
 

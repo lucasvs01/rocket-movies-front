@@ -12,9 +12,9 @@ export const Container = styled.div`
     "header" 
     "content";
     
-    > div strong{
+    /* > div strong{
         margin-bottom: 18px;
-    }
+    } */
     
     > main {
 

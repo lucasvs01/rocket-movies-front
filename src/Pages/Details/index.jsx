@@ -1,85 +1,192 @@
 import { Container } from "./styles";
 import { Profile } from "./styles";
 
-import { Header } from "../../Components/Header"
-import { Buttontext } from "../../Components/Buttontext"
-import {Tag} from "../../Components/Tag"
+import { Header } from "../../Components/Header";
+import { Buttontext } from "../../Components/Buttontext";
+import {Tag} from "../../Components/Tag";
+import { Button } from "../../Components/Button";
 
-import { AiOutlineArrowLeft } from "react-icons/ai"
-import {AiTwotoneStar} from "react-icons/ai"
-import {AiOutlineClockCircle} from "react-icons/ai"
+import { AiOutlineArrowLeft } from "react-icons/ai";
+import {AiTwotoneStar} from "react-icons/ai";
+import {AiOutlineClockCircle} from "react-icons/ai";
 
-
+import { api } from "../../services/api";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useAuth } from "../../hooks/auth";
 
 export function Details({data, ...rest}){
 
+    const [movie, setMovie] = useState(null);
+    const [tags, setTags] = useState({});
+    const params =  useParams();
+    const { user } = useAuth();
+    
+
+    const avatarUrl = user.avatar ? `${api.defaults.baseURL}/Files/${user.avatar}` : avatar_placeholder;
+    const navigate = useNavigate()
+    
+    function handleBack(){
+        navigate(-1)
+    }
+
+    async function handleMovieDelete(){
+
+        const confirmationForDeleteMovie = window.confirm("Deseja realmente excluir o filme?")
+
+        if(confirmationForDeleteMovie){
+            
+            await api.delete(`/notes/${params.id}`)
+    
+            handleBack()
+        }
+        
+    }
+
+    useEffect(() => {
+        async function handleDetails(){
+
+
+           const response = await api.get(`/notes/${params.id}`)
+    
+           setMovie(response.data)
+           setTags(response.data.tags)
+            
+    
+        }
+        
+        handleDetails()
+    },
+    [])
+
+    
+
     return (
         <Container {...rest}>
-            <Header>
-                sair
-            </Header>
-
+            <Header/>
+        {   movie &&     
             <main>
-                <Buttontext title="Voltar" to="/" icon={AiOutlineArrowLeft}/>
+                <Buttontext title="Voltar" onClick={handleBack} icon={AiOutlineArrowLeft}/>
 
 
                 <header>
                     <div className="title">
                         <h1>
-                            Interestellar
+                           {movie.title} 
                         </h1>
 
                         <div className="stars">
-                            <AiTwotoneStar />
-                            <AiTwotoneStar />
-                            <AiTwotoneStar />
-                            <AiTwotoneStar />
-                            <AiTwotoneStar className="transparent-star"/>
+                            {(    movie.rating === 0 ? 
+                                    <div className="stars">
+                                                    
+                                    <AiTwotoneStar className="transparent-star"></AiTwotoneStar>
+                                    <AiTwotoneStar className="transparent-star"></AiTwotoneStar>
+                                    <AiTwotoneStar className="transparent-star"></AiTwotoneStar>
+                                    <AiTwotoneStar className="transparent-star"></AiTwotoneStar>
+                                    <AiTwotoneStar className="transparent-star"></AiTwotoneStar>
+                    
+                                    </div> : 
+                                    null)}
+
+                            {(    movie.rating === 1 ? 
+                                
+                                        <div className="stars">
+                                                            
+                                            <AiTwotoneStar ></AiTwotoneStar>
+                                            <AiTwotoneStar className="transparent-star"></AiTwotoneStar>
+                                            <AiTwotoneStar className="transparent-star"></AiTwotoneStar>
+                                            <AiTwotoneStar className="transparent-star"></AiTwotoneStar>
+                                            <AiTwotoneStar className="transparent-star"></AiTwotoneStar>
+
+                                        </div> : 
+                                    null)}
+
+                            {(    movie.rating === 2 ? 
+                                    <div className="stars">
+                                                        
+                                        <AiTwotoneStar ></AiTwotoneStar>
+                                        <AiTwotoneStar ></AiTwotoneStar>
+                                        <AiTwotoneStar className="transparent-star"></AiTwotoneStar>
+                                        <AiTwotoneStar className="transparent-star"></AiTwotoneStar>
+                                        <AiTwotoneStar className="transparent-star"></AiTwotoneStar>
+                        
+                                    </div> : 
+                                    null)}  
+
+                            {(    movie.rating === 3 ? 
+                                    <div className="stars">
+                                                        
+                                        <AiTwotoneStar ></AiTwotoneStar>
+                                        <AiTwotoneStar ></AiTwotoneStar>
+                                        <AiTwotoneStar ></AiTwotoneStar>
+                                        <AiTwotoneStar className="transparent-star"></AiTwotoneStar>
+                                        <AiTwotoneStar className="transparent-star"></AiTwotoneStar>
+                        
+                                    </div> : 
+                                    null)} 
+
+                            {(    movie.rating === 4 ? 
+                                    <div className="stars">
+                                                        
+                                        <AiTwotoneStar ></AiTwotoneStar>
+                                        <AiTwotoneStar ></AiTwotoneStar>
+                                        <AiTwotoneStar ></AiTwotoneStar>
+                                        <AiTwotoneStar ></AiTwotoneStar>
+                                        <AiTwotoneStar className="transparent-star"></AiTwotoneStar>
+                        
+                                    </div> : 
+                                    null)} 
+
+                            {(    movie.rating === 5 ? 
+                    <div className="stars">
+                                         
+                        <AiTwotoneStar ></AiTwotoneStar>
+                        <AiTwotoneStar ></AiTwotoneStar>
+                        <AiTwotoneStar ></AiTwotoneStar>
+                        <AiTwotoneStar ></AiTwotoneStar>
+                        <AiTwotoneStar ></AiTwotoneStar>
+        
+                    </div> : 
+                    null)}
                         </div>
                     </div>
 
 
                         <Profile>
-                            <img src="https://github.com/lucasvs01.png" alt="Foto usuário"/>
+                            <img src={avatarUrl} alt="Foto usuário"/>
 
                             <span>
-                                Por Lucas Vilaça 
+                                {`Por ${user.name}`} 
                             </span>
 
                             <AiOutlineClockCircle/>
 
                             <span>
-                                23/05/22 às 08:00
+                                {movie.created_at}
                             </span>
                         </Profile>
                 </header>
 
-                <div className="tags">   
-                    <Tag title="Ficção Científica"/>
-                    <Tag title="Drama"/>
-                    <Tag title="Família"/>
+
+                <div className="tags" > 
+                 {
+                    tags && tags.map(tag => <Tag title={tag.name} key={String(tag.id)}/>)
+                 }
                 </div>
 
+                
+
                 <p>
-                    Pragas nas colheitas fizeram a civilização humana regredir para uma sociedade agrária em futuro de data desconhecida. 
-                    Cooper, ex-piloto da NASA, tem uma fazenda com sua família. Murphy, a filha de dez anos de Cooper, acredita que seu 
-                    quarto está assombrado por um fantasma que tenta se comunicar com ela. Pai e filha descobrem que o "fantasma" é uma 
-                    inteligência desconhecida que está enviando mensagens codificadas através de radiação gravitacional, deixando coordenadas 
-                    em binário que os levam até uma instalação secreta da NASA liderada pelo professor John Brand. O cientista revela 
-                    que um buraco de minhoca foi aberto perto de Saturno e que ele leva a planetas que podem oferecer condições de 
-                    sobrevivência para a espécie humana. As "missões Lázaro" enviadas anos antes identificaram três planetas potencialmente 
-                    habitáveis orbitando o buraco negro Gargântua: Miller, Edmunds e Mann – nomeados em homenagem aos astronautas que os 
-                    pesquisaram. Brand recruta Cooper para pilotar a nave espacial Endurance e recuperar os dados dos astronautas; se um 
-                    dos planetas se mostrar habitável, a humanidade irá seguir para ele na instalação da NASA, que é na realidade uma 
-                    enorme estação espacial. A partida de Cooper devasta Murphy.Além de Cooper, a tripulação da Endurance é formada pela 
-                    bióloga Amelia, filha de Brand; o cientista Romilly, o físico planetário Doyle, além dos robôs TARS e CASE. 
-                    Eles entram no buraco de minhoca e se dirigem a Miller, porém descobrem que o planeta possui enorme dilatação 
-                    gravitacional temporal por estar tão perto de Gargântua: cada hora na superfície equivale a sete anos na Terra. 
-                    Eles entram em Miller e descobrem que é inóspito já que é coberto por um oceano raso e agitado por ondas enormes. 
-                    Uma onda atinge a tripulação enquanto Amelia tenta recuperar os dados de Miller, matando Doyle e atrasando a partida. 
-                    Ao voltarem para a Endurance, Cooper e Amelia descobrem que 23 anos se passaram.
+                    {movie.description}
                 </p>
+
+
             </main>
+        }
+
+                <footer>
+                    <Button title="Excluir filme" onClick={handleMovieDelete}></Button>
+                </footer>
         </Container>
     )
 }
