@@ -2,7 +2,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 
 import { Home } from "../Pages/Home"
 import { Perfil } from "../Pages/Perfil"
-import { New } from "../Pages/New"
+import { New } from "../Pages/new";
 import { Details } from "../Pages/Details"
 
 export function AppRoutes(){
